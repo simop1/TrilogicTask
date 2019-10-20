@@ -11,4 +11,39 @@
 
     <!-- Definitions for the other tables go here ... -->
 
+    <table name="restaurant" phpName="Restaurant">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="name" type="varchar" size="128" required="true"/>
+        <column name="lat" type="varchar" size="128" required="true"/>
+        <column name="lng" type="varchar" size="128" required="true"/>
+    </table>
+
+    <table name="address" phpName="Address">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="address" type="varchar" size="128" required="true"/>
+        <column name="lat" type="varchar" size="128" required="true"/>
+        <column name="lng" type="varchar" size="128" required="true"/>
+    </table>
+
+    <table name="orders" phpName="Orders">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="user_id" type="integer" required="true"/>
+        <column name="address_id" type="integer" required="true"/>
+        <column name="restaurant_id" type="integer" required="true"/>
+        <column name="value" type="decimal" required="true"/>
+        <column name="date" type="date" required="true"/>
+        <column name="status" type="integer" required="true"/>
+
+        <foreign-key foreignTable = "user">
+            <reference local="user_id" foreign="id" />
+        </foreign-key>
+        <foreign-key foreignTable = "address">
+            <reference local="address_id" foreign="id" />
+        </foreign-key>
+        <foreign-key foreignTable = "restaurant">
+            <reference local="restaurant_id" foreign="id" />
+        </foreign-key>
+    </table>
+
 </database>
+
